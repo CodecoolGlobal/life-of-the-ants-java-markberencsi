@@ -33,9 +33,18 @@ public class Colony {
     }
 
     public void update(){
+        QUEENANT.decreaseMatingTimer();
         for(Ant ant: ants){
-            if(ant instanceof Worker || ant instanceof Soldier){
-                ant.act(WIDTH);
+            ant.act(WIDTH);
+            if(ant instanceof Drone){
+                if(ant.getAntPosition().getX() == QUEENANT.getQueenPosition().getX()
+                && ant.getAntPosition().getY() == QUEENANT.getQueenPosition().getY()){
+                    ((Drone) ant).tryToMate(QUEENANT.isSheReadyToMate(), WIDTH);
+                    if(((Drone) ant).hasFinishedMating()){
+                        QUEENANT.resetMatingTimer();
+                        ((Drone) ant).resetMatingTimer();
+                    }
+                }
             }
         }
 
@@ -55,6 +64,7 @@ public class Colony {
                         if(antXCoordinate == i && antYCoordinate == j){
                             isAnt = true;
                             System.out.print(ant);
+                            break;
                         }
                     }
                     if(!isAnt){

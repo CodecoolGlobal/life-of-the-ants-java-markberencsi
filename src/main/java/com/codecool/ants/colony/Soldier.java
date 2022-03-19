@@ -17,11 +17,11 @@ public class Soldier extends Ant {
 
     public void act(int colonySize){
         Direction[] directions = {NORTH, NORTH, WEST, WEST, SOUTH, SOUTH, EAST, EAST};
-        moveAnt(colonySize, directions);
+        moveAnt(directions);
     }
 
-    private void moveAnt(int colonySize, Direction[] directions){
-        if(patrolCycle > 7){
+    private void moveAnt(Direction[] directions){
+        if(patrolCycle > directions.length-1){
             patrolCycle = 0;
         }
         Position currentPosition = getAntPosition();

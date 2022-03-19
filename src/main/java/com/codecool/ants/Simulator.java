@@ -9,7 +9,7 @@ public class Simulator {
 
     public static void main(String[] args) {
         System.out.println("You can use `mvn package; java -jar target/ants-1.0.jar` to run this app from the console");
-        Colony c = new Colony(10);
+        Colony c = new Colony(11);
         c.generateAnts(3,3,3);
         Scanner s = new Scanner(System.in);
         while(true){
